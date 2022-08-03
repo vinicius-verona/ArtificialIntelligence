@@ -1,4 +1,5 @@
 import numpy as np
+import matplotlib.pyplot as plot
 
 
 class ToiletEnviroment:
@@ -26,7 +27,7 @@ class ToiletEnviroment:
         averageConsumption = [30, 80, 100, 80, 10, 2, 1]
         day = self.clock % 7
 
-        self.number += action["to-buy"]
+        self.number += action["to_buy"]
         self.number = min(self.number, self.max)
         self.number -= (averageConsumption[day] +
                         np.random.randn() * averageConsumption[day] / 10)
@@ -34,7 +35,7 @@ class ToiletEnviroment:
         if (self.number < self.min):
             self.number = self.min
 
-        self.price += (0.01 * self.clock + np.random.randn())
+        self.price = 1 + (0.0005 * self.clock + np.random.randn() / 10)
         self.price = abs(self.price)
         self.clock += 1
 
@@ -65,6 +66,7 @@ class ToiletAgent:
         action = {
             "to_buy": 0
         }
+
         if (number < critical):
             action["to_buy"] = critical - number
 
