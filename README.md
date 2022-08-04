@@ -13,7 +13,9 @@ ArtificialIntelligence
 ├─ ClassroomTasks
 │  └─ Week-01
 │     ├─ Intro-To-Python
-│     └─ ToiletPaperManagement.py
+│     └─ class.py
+│     └─ ToiletPaper_Agent.py
+│     └─ ToiletPaper_Environment.py
 ├─ LICENSE
 └─ README.md
 ```
