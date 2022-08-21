@@ -1,0 +1,1 @@
+{'bound': inf, 'frontier': [[(10, 10)]]}

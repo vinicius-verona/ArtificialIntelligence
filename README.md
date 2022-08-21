@@ -16,6 +16,7 @@ ArtificialIntelligence
 │     └─ class.py
 │     └─ ToiletPaper_Agent.py
 │     └─ ToiletPaper_Environment.py
+│  └─ Week-02
 ├─ LICENSE
 └─ README.md
 ```
