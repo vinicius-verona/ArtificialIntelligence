@@ -17,6 +17,9 @@ ArtificialIntelligence
 │     └─ ToiletPaper_Agent.py
 │     └─ ToiletPaper_Environment.py
 │  └─ Week-02
+│     └─ main.py
+│     └─ mazeAgent.py
+│     └─ mazeEnv.py
 ├─ LICENSE
 └─ README.md
 ```
