@@ -42,6 +42,7 @@ def randSelect(population, iteration, evalFunction):
                 return individual
 
 
+# Require improvement in order to keep the crossover as a permutation
 def crossover(fstIndividual, sndIndividual):
     """
         Execute a crossover between two individuals
@@ -59,6 +60,7 @@ def crossover(fstIndividual, sndIndividual):
     return newFstIndividual, newSndIndividual
 
 
+# Require improvement in order to keep the mutation as a permutation of elements
 def mutate(individual, domains, percentage):
     """
         Mutate an individual by changing the value of a percentage k of the variables
