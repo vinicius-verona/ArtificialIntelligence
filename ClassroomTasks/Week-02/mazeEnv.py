@@ -8,7 +8,7 @@ class Maze:
     def __init__(self, n, m) -> None:
         self.start = (n, m)
         self.maze = maze(n, m)
-        self.maze.CreateMaze(loopPercent=10)
+        self.maze.CreateMaze(loopPercent=70)
         self.goal = self.maze._goal
 
     def initial_percepts(self) -> dict:
