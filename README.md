@@ -11,15 +11,20 @@ ArtificialIntelligence
 ├─ .git
 ├─ .gitignore
 ├─ ClassroomTasks
-│  └─ Week-01
+│  └─ Introduction
 │     ├─ Intro-To-Python
 │     └─ class.py
 │     └─ ToiletPaper_Agent.py
 │     └─ ToiletPaper_Environment.py
-│  └─ Week-02
+│  └─ Maze
 │     └─ main.py
 │     └─ mazeAgent.py
 │     └─ mazeEnv.py
+│  └─ CSP
+│     └─ main.py
+│     └─ LocalSearch.py
+│     └─ SimulatedAnnealing.py
+│     └─ stdGeneticSearch.py
 ├─ LICENSE
 └─ README.md
 ```
