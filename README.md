@@ -25,6 +25,8 @@ ArtificialIntelligence
 │     └─ LocalSearch.py
 │     └─ SimulatedAnnealing.py
 │     └─ stdGeneticSearch.py
+│  └─ Proposition and Inference
+│     └─ Abduction.py
 ├─ LICENSE
 └─ README.md
 ```
