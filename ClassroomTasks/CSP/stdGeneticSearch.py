@@ -57,7 +57,7 @@ def checkConstraints(individual, constraints):
         Verify if the current individual satisfies all constraints
     """
     for constraint in constraints:
-        if (not constraint(individual)):
+        if (constraint(individual)):
             return False
 
     return True
@@ -87,7 +87,7 @@ def crossover(fstIndividual, sndIndividual):
     child2 = copy.deepcopy(sndIndividual)
 
     for i in range(popSize):
-        if mask[i] == 0:
+        if not mask[i]:
             child1[i] = sndIndividual[i]
             child2[i] = fstIndividual[i]
 
@@ -109,7 +109,7 @@ def mutate(individual, domains, percentage):
     return neighbor
 
 
-def findBestSolution(population):
+def findBestSolution(population, constraints):
     """
         Evaluate each solution within the population and return the best one
     """
@@ -119,7 +119,7 @@ def findBestSolution(population):
     for i in population:
         val = evalSol(i)
 
-        if (val < bestVal):
+        if (val < bestVal and checkConstraints(i, constraints)):
             bestVal = val
             bestSol = i
 
@@ -134,7 +134,7 @@ def stdGeneticSearch(variables, domains, constraints, iterMax, popSize, evalSol)
         # Check if a solution has been found
         for individual in population:
             if (checkConstraints(individual, constraints)):
-                return findBestSolution(population)
+                return findBestSolution(population, constraints)
 
         newPopulation = []
         for _ in range(math.floor(popSize / 2)):
@@ -149,7 +149,7 @@ def stdGeneticSearch(variables, domains, constraints, iterMax, popSize, evalSol)
 
         population = newPopulation
 
-    return findBestSolution(population)
+    return findBestSolution(population, constraints)
 
 
 if __name__ == "__main__":
@@ -157,4 +157,6 @@ if __name__ == "__main__":
     variables = [i for i in range(n)]
     domain = [[i for i in range(n)] for j in range(n)]
     constraints = [differentColumnViolations, differentDiagonalViolations]
-    _ = stdGeneticSearch(variables, domain, constraints, 10000, 100, evalSol)
+    sol, val = stdGeneticSearch(variables, domain, constraints, 10000, 1000, evalSol)
+    print(sol)
+    print(val)
