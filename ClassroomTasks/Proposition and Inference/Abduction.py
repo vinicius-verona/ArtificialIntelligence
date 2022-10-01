@@ -68,14 +68,19 @@ def ask(askable):
 
 
 if __name__ == "__main__":
-    kb = {'rules': {'bronchitis': [['influenza'], ['smokes']],
-                    'coughing': [['bronchitis']],
-                    'wheezing': [['bronchitis']],
-                    'fever': [['influenza', 'infection']],
-                    'sore_throat': [['influenza']],
-                    'false': [['smokes', 'nonsmokers']]},
-          'askables': [],
-          'assumables': ['smokes', 'nonsmokers', 'influenza', 'infection']}
+    kb = {
+        'rules':
+            {
+                'bronchitis': [['influenza'], ['smokes']],
+                'coughing': [['bronchitis']],
+                'wheezing': [['bronchitis']],
+                'fever': [['influenza', 'infection']],
+                'sore_throat': [['influenza']],
+                'false': [['smokes', 'nonsmokers']]
+            },
+        'askables': [],
+        'assumables': ['smokes', 'nonsmokers', 'influenza', 'infection']
+    }
 
     observation = ['wheezing', 'fever', 'sore_throat']
     print(f"Explanation to {observation}: {abduction(kb, observation)}")
