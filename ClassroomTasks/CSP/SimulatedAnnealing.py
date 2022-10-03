@@ -52,8 +52,12 @@ def swap(sol):
     return neighbor
 
 
-def simulatedAnnealing(sol, evalSol, move, itermax, T0, cooling):
+def simulatedAnnealing(sol, evalSol, move, itermax, T0, cooling, noImprovement=0):
 
+    if noImprovement == 0:
+        noImprovement = itermax * 0.5
+
+    iterationsWithNoImprovements = 0
     bestVal = evalSol(sol)
     bestSol = copy.deepcopy(sol)
     currentVal = evalSol(sol)
@@ -61,10 +65,12 @@ def simulatedAnnealing(sol, evalSol, move, itermax, T0, cooling):
     T = T0
 
     for i in range(0, itermax):
-        neighbor = move(currentSol)
+        neighbor = move(copy.deepcopy(currentSol))
         newVal = evalSol(neighbor)
+        iterationsWithNoImprovements += 1
 
         if (newVal - currentVal < 0):
+            iterationsWithNoImprovements = 0
             currentSol = copy.deepcopy(neighbor)
             currentVal = newVal
 
@@ -77,11 +83,12 @@ def simulatedAnnealing(sol, evalSol, move, itermax, T0, cooling):
             if (x < acceptanceProbability(newVal - currentVal, T)):
                 currentSol = copy.deepcopy(neighbor)
                 currentVal = newVal
-            else:
-                neighbor = copy.deepcopy(currentSol)
 
         T *= cooling
-        if (T < 0.1):
+
+        # If the solution have not improved after a certain amount of iterations, reheat temperature
+        if (iterationsWithNoImprovements > noImprovement):
+            iterationsWithNoImprovements = 0
             T = T0
 
     return bestSol, bestVal
@@ -89,8 +96,8 @@ def simulatedAnnealing(sol, evalSol, move, itermax, T0, cooling):
 
 if __name__ == '__main__':
 
-    sol = [0, 1, 2, 3, 4, 5, 6, 7]
-
+    sol = list(range(10))
+    val = evalSol(sol)
     sol, val = simulatedAnnealing(sol=sol, evalSol=evalSol, move=swap, itermax=10000, T0=1000, cooling=0.90)
 
     print(sol)
